@@ -22,6 +22,7 @@ class Player:
     return self.location
 
   def buy(self, place: Place):
+    place.owner_id = self.id
     self.money -= place.price
     country_name = place.country.name
     if country_name in self.owned_places:
@@ -45,3 +46,7 @@ class Player:
   def get_status(self):
     print(
         f"---> player: '{self.name}' || money: '{self.money}' chooge || location: {self.location} || is in jail: {self.is_in_jail}\n")
+    print(f"---> owned places: {len(self.owned_places)}\n")
+    for place_list in self.owned_places.values():
+      for place in place_list:  
+        place.get_status()

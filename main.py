@@ -102,22 +102,36 @@ class Game:
             player.free_from_jain()
           else:
             ans = input("no Double dice. If you want to be free, pay 50 choogh. yes or no? ")
-            if ans == "yes":
+            if ans == "yes" or ans == "y":
               if player.pay(50):
                 player.free_from_jain()
               else:
-                # todo: rent!
+                # todo: rent place or lose!
                 pass
+              print("---> you get free from jail\n")
+              player.get_status()
             continue
 
         # * free
         location = player.move(dice_vale)
         cell = self.game_map[location]
         if isinstance(cell, Place):
-          pass
+          if not cell.owner_id and player.money >= cell.price:
+            ans = input(
+                f"this place is for sale({cell.price} choogh). do you want to buy it. yes or no? ")
+            if ans =="yes" or ans== "y":
+              player.buy(cell)
+              print("---> you bought this place\n")
+          elif cell.owner_id:
+            rent = cell.get_rent_value(player)
+            if rent >= player.money:
+              player.pay(rent)
+            else:
+              #todo: rent place or lose
+              pass
+            
         else:
           cell.do_action(player)
-
           pass
         player.get_status()
 

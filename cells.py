@@ -6,6 +6,7 @@ if typing.TYPE_CHECKING:
   from player import Player
   from country import Country
 
+
 class Cell_Action(Enum):
   Go = "Go"
   GoToJail = "GoToJail"
@@ -33,10 +34,15 @@ class Place(Cell):
     self.is_mortgaged: bool = False
     self.building_level = 0
 
-  def get_rent_value(self, owner_id) -> int:
-    if self.owner_id == None or self.is_mortgaged or self.owner_id == owner_id:
+  def get_rent_value(self, player: Player) -> int:
+    if self.owner_id == None or self.is_mortgaged or self.owner_id == player.id:
       return 0
     return self.rents[self.building_level]
+
+  def get_status(self):
+    print(
+        f"-------> name: '{self.id}' || owner_id: '{self.owner_id}' || is_mortgaged: '{self.is_mortgaged}' || building_level: '{self.building_level}'")
+    pass
 
 
 class Property(Cell):
