@@ -3,14 +3,14 @@ from enum import Enum
 
 
 class Country_Name(Enum):
-  Gray = "Gray",
-  Sky = "Sky",
-  Pink = "Pink",
-  Orange = "Orange",
-  Red = "Red",
-  Yellow = "Yellow",
-  Green = "Green",
-  Blue = "Blue"
+    Gray = "Gray",
+    Sky = "Sky",
+    Pink = "Pink",
+    Orange = "Orange",
+    Red = "Red",
+    Yellow = "Yellow",
+    Green = "Green",
+    Blue = "Blue"
 
 
 MAP_SIZE = 40
