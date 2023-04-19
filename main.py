@@ -15,6 +15,10 @@ class Game:
             Player(name="You", id=0, money=INIT_MONEY),
             Player(name="AI", id=1, money=INIT_MONEY),
         ]
+        # * helper
+        self.gamer = self.players[0]
+        self.agent = self.players[1]
+        # * helper
         self.countries: list[Country] = [
             Country(0, Country_Name.Gray), Country(1, Country_Name.Sky),
             Country(2, Country_Name.Pink), Country(3, Country_Name.Orange),
@@ -137,6 +141,19 @@ class Game:
                     cell.do_action(player)
                     pass
                 player.get_status()
+        self.end_game()
+    def end_game(self):
+        winner_score = max([agent.get_func_val(self, player) for player in self.players])
+
+        def get_max_score_player():
+            for player in self.players:
+                if agent.get_func_val(self, player) == winner_score:
+                    return player
+            return self.players[0]
+
+        winner = get_max_score_player()
+        print("\n\n------> game winner:")
+        winner.get_status()
 
 
 if __name__ == "__main__":

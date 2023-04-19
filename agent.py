@@ -1,8 +1,20 @@
 from __future__ import annotations
+from enum import Enum
 import typing
 if typing.TYPE_CHECKING:
     from player import Player
     from main import Game
+
+class Node_Action(Enum):
+    Buy ="Buy"
+    Rent_Cheapest = "Rent_Cheapest"
+    
+    pass
+
+class Node_State(Enum):
+    Minimizer = "Minimizer"
+    Maximizer = "Maximizer"
+    Average = "Average"
 
 
 def get_func_val(game: Game, player: Player):
@@ -20,6 +32,7 @@ def get_func_val(game: Game, player: Player):
 
 
 def agent_action(game: Game, dice_val: int, isDouble: bool):
-    def dfs(node, state):
+    #* build graph and go through it and search for the best path with get_func_val
+    def dfs(node, state: Node_State):
         pass
     pass
